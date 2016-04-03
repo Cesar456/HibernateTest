@@ -13,7 +13,7 @@
 			jdbc:mysql://115.29.55.54/test
 		</property>
 		<property name="connection.username">root</property>
-		<property name="connection.password">**</property>
+		<property name="connection.password">chen724467110</property>
 		<property name="connection.driver_class">
 			com.mysql.jdbc.Driver
 		</property>

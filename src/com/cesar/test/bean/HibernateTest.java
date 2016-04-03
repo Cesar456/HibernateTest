@@ -52,4 +52,12 @@ public class HibernateTest implements java.io.Serializable {
 		this.age = age;
 	}
 
+	@Override
+	public String toString() {
+		return "HibernateTest [id=" + id + ", name=" + name + ", age=" + age
+				+ "]";
+	}
+	
+	
+
 }
