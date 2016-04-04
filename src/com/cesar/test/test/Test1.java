@@ -4,18 +4,21 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import com.cesar.test.bean.HibernateTest;
+import com.cesar.test.bean.Person;
 
 import junit.framework.TestCase;
 
+/**
+ * 该类主要是对hibernate操作的一些基本方法的学习和使用
+ * 
+ * @author Cesar
+ * 
+ */
 public class Test1 extends TestCase {
 
 	private static Configuration cfg;
 	private static SessionFactory sessionFactory;
 	private static ThreadLocal<Session> threadLocal;
-
-	private static Class<HibernateTest> hi;
-
 	/**
 	 * 1. threadLocal保证session的线程安全 2. 加载配置文件 3. 实例化sessionFactory
 	 */
@@ -23,17 +26,15 @@ public class Test1 extends TestCase {
 		threadLocal = new ThreadLocal<>();
 		cfg = new Configuration().configure();
 		sessionFactory = cfg.buildSessionFactory();
-
-		hi = HibernateTest.class;
 	}
 
 	public void test() {
 		Session session = getSession();
-		// get(session);
+		get(session);
 		// load(session);
 		// dele(session);
 		// update(session);
-		save(session);
+		// save(session);
 
 	}
 
@@ -44,8 +45,7 @@ public class Test1 extends TestCase {
 	 */
 	private void get(Session session) {
 		// 第一个参数是类型，第二个是主键
-		HibernateTest test = (HibernateTest) session.get(HibernateTest.class,
-				new Integer(2));
+		Person test = (Person) session.get(Person.class, 5);
 		System.out.println(test.toString());
 	}
 
@@ -57,11 +57,11 @@ public class Test1 extends TestCase {
 	private void load(Session session) {
 
 		// 方法1
-		HibernateTest test = (HibernateTest) session.load(hi, new Integer(1));
+		Person test = (Person) session.load(Person.class, new Integer(1));
 		System.out.println(test.toString());
 
 		// 方法2
-		HibernateTest test2 = new HibernateTest();
+		Person test2 = new Person();
 		session.load(test2, new Integer(2));
 		System.out.println(test2.toString());
 	}
@@ -72,7 +72,7 @@ public class Test1 extends TestCase {
 	 * @param session
 	 */
 	private void dele(Session session) {
-		HibernateTest test = (HibernateTest) session.get(hi, new Integer(1));
+		Person test = (Person) session.get(Person.class, new Integer(1));
 		session.delete(test);
 		session.flush(); // flush 立刻执行session中的操作
 		System.out.println("数据已经删除");
@@ -85,14 +85,14 @@ public class Test1 extends TestCase {
 	 * @return
 	 */
 	private void update(Session session) {
-		HibernateTest test = (HibernateTest) session.get(hi, 1);
+		Person test = (Person) session.get(Person.class, 1);
 		test.setAge(23); // 这里在对象中直接修改数据
 		session.flush(); // flush之后会直接修改该数据
 		System.out.println("数据已经修改");
 	}
 
 	private void save(Session session) {
-		HibernateTest test = new HibernateTest();
+		Person test = new Person();
 		test.setAge(21);
 		test.setName("kak");
 

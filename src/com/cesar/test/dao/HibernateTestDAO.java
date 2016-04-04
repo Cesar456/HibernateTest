@@ -7,7 +7,7 @@ import org.hibernate.criterion.Example;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.cesar.test.bean.HibernateTest;
+import com.cesar.test.bean.Person;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -17,7 +17,7 @@ import com.cesar.test.bean.HibernateTest;
  * transactions. Each of these methods provides additional information for how
  * to configure it for the desired type of transaction control.
  * 
- * @see com.cesar.test.bean.HibernateTest
+ * @see com.cesar.test.bean.Person
  * @author MyEclipse Persistence Tools
  */
 public class HibernateTestDAO extends BaseHibernateDAO {
@@ -27,7 +27,7 @@ public class HibernateTestDAO extends BaseHibernateDAO {
 	public static final String NAME = "name";
 	public static final String AGE = "age";
 
-	public void save(HibernateTest transientInstance) {
+	public void save(Person transientInstance) {
 		log.debug("saving HibernateTest instance");
 		try {
 			getSession().save(transientInstance);
@@ -38,7 +38,7 @@ public class HibernateTestDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public void delete(HibernateTest persistentInstance) {
+	public void delete(Person persistentInstance) {
 		log.debug("deleting HibernateTest instance");
 		try {
 			getSession().delete(persistentInstance);
@@ -49,10 +49,10 @@ public class HibernateTestDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public HibernateTest findById(java.lang.Integer id) {
+	public Person findById(java.lang.Integer id) {
 		log.debug("getting HibernateTest instance with id: " + id);
 		try {
-			HibernateTest instance = (HibernateTest) getSession().get(
+			Person instance = (Person) getSession().get(
 					"com.cesar.per.bean.HibernateTest", id);
 			return instance;
 		} catch (RuntimeException re) {
@@ -61,7 +61,7 @@ public class HibernateTestDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public List findByExample(HibernateTest instance) {
+	public List findByExample(Person instance) {
 		log.debug("finding HibernateTest instance by example");
 		try {
 			List results = getSession()
@@ -111,10 +111,10 @@ public class HibernateTestDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public HibernateTest merge(HibernateTest detachedInstance) {
+	public Person merge(Person detachedInstance) {
 		log.debug("merging HibernateTest instance");
 		try {
-			HibernateTest result = (HibernateTest) getSession().merge(
+			Person result = (Person) getSession().merge(
 					detachedInstance);
 			log.debug("merge successful");
 			return result;
@@ -124,7 +124,7 @@ public class HibernateTestDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public void attachDirty(HibernateTest instance) {
+	public void attachDirty(Person instance) {
 		log.debug("attaching dirty HibernateTest instance");
 		try {
 			getSession().saveOrUpdate(instance);
@@ -135,7 +135,7 @@ public class HibernateTestDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public void attachClean(HibernateTest instance) {
+	public void attachClean(Person instance) {
 		log.debug("attaching clean HibernateTest instance");
 		try {
 			getSession().lock(instance, LockMode.NONE);

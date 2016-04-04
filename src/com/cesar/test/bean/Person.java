@@ -4,7 +4,7 @@ package com.cesar.test.bean;
  * HibernateTest entity. @author MyEclipse Persistence Tools
  */
 
-public class HibernateTest implements java.io.Serializable {
+public class Person implements java.io.Serializable {
 
 	/**
 	 * 
@@ -19,11 +19,11 @@ public class HibernateTest implements java.io.Serializable {
 	// Constructors
 
 	/** default constructor */
-	public HibernateTest() {
+	public Person() {
 	}
 
 	/** full constructor */
-	public HibernateTest(String name, Integer age) {
+	public Person(String name, Integer age) {
 		this.name = name;
 		this.age = age;
 	}
